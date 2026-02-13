@@ -384,3 +384,198 @@ AI Automation Developer
 - Telegram as Notification Channel
 - Structured JSON Output Handling
 
+  ---
+
+## System Architecture (Layered Design)
+
+This project follows a modular, layered automation architecture designed for scalability and operational clarity.
+
+### 1. Intake Layer
+- Multichannel lead sources (Website, WhatsApp, Email, App)
+- Centralized ingestion into Google Sheets
+- Structured data normalization
+
+### 2. Intelligence Layer
+- AI Agent orchestration
+- Groq LLM inference (llama-3.1-8b-instant)
+- Structured JSON output enforcement
+- Deterministic classification schema
+
+### 3. Routing Layer
+- Lead scoring logic
+- Operational team routing
+- Telegram-based notification dispatch
+
+### 4. Human Interaction Layer
+- Command-based lead claiming:
+  RECEIVED <LeadID>
+- Lead closure:
+  CLOSED <LeadID> <Remark>
+- Structured command parsing via Code + IF validation nodes
+
+### 5. Persistence Layer
+- Centralized lifecycle state management
+- Timestamp logging (Assigned_At, Closed_At)
+- Audit trail preservation
+
+This separation ensures maintainability, extensibility, and system clarity.
+
+---
+
+## Prompt Engineering Strategy
+
+The AI Agent is governed by a strictly structured system message enforcing:
+
+- Controlled intent categories
+- Restricted product classification outputs
+- Deterministic JSON schema
+- Numeric lead scoring boundaries
+- Explicit routing recommendations
+
+Guardrails implemented:
+
+1. Constrained output fields (no free-text drift)
+2. Category enforcement (Inquiry / Purchase / Service / etc.)
+3. Score normalization (0–100)
+4. Explicit fallback handling for unknown intents
+5. Prevention of speculative recommendations
+
+Objective:
+Ensure predictable AI output suitable for operational automation.
+
+---
+
+## Operational Metrics & KPIs (Planned Measurement Layer)
+
+This engine is designed to support measurable operational metrics, including:
+
+- Lead Response Time (creation → assignment)
+- Assignment Latency
+- Time to Closure
+- Lead Score vs Conversion Rate
+- Routing Accuracy
+- Agent Performance Tracking
+
+Future integration will include dashboard-based monitoring and SLA-based alerts.
+
+---
+
+## Error Handling & Validation Logic
+
+To ensure production safety, the following validation layers are implemented:
+
+- IF node validation for Telegram command structure
+- Lead ID existence verification before update
+- Row_number-based update matching to prevent mismatch
+- Structured JSON parsing before field access
+- Command sanitation in Code node
+- Fallback routing for invalid input
+
+These checks prevent:
+- Accidental overwrites
+- Invalid lead closures
+- Misassignment
+- Null updates
+
+---
+
+## Scalability Considerations
+
+Current prototype uses Google Sheets for rapid deployment.
+
+Scalability limitations include:
+
+- Row processing constraints
+- Poll-based trigger delay
+- Concurrency limitations
+- Telegram API rate limits
+
+Planned upgrades:
+
+1. PostgreSQL-backed datastore
+2. Event-driven webhook triggers
+3. Queue-based lead processing
+4. Horizontal scaling of routing logic
+5. Distributed team routing model
+
+---
+
+## Design Decisions
+
+### Why Google Sheets?
+- Rapid prototyping
+- Business-friendly visibility
+- Zero infrastructure overhead
+- Easy operational auditing
+
+Tradeoff:
+Not suitable for high-volume enterprise workloads.
+
+---
+
+### Why Command-Based Assignment?
+- No separate UI required
+- Low friction adoption
+- Works within existing team communication tools
+- Human-in-the-loop preserved
+
+---
+
+### Why Groq LLM?
+- Low-latency inference
+- Cost efficiency
+- Stable structured output
+- Suitable for workflow automation environments
+
+---
+
+## Production Risks & Constraints
+
+- LLM misclassification under ambiguous input
+- Dependency on third-party APIs (Groq / Telegram)
+- Manual trigger in development mode
+- No RAG-based product database yet
+- No automated follow-up reminder layer
+
+Risk Mitigation Strategy:
+- Strict schema enforcement
+- Validation nodes
+- Planned SLA monitoring
+- Database migration roadmap
+
+---
+
+## Enterprise Evolution Path
+
+To evolve into a production-grade distributed platform:
+
+1. Replace Sheets with PostgreSQL
+2. Add vector database (RAG) for structured product retrieval
+3. Implement SLA-based escalation engine
+4. Add automated follow-up reminders
+5. Introduce agent load balancing
+6. Add performance analytics dashboard
+7. Integrate WhatsApp Business API
+8. Build multi-city routing model
+
+---
+
+## Architectural Positioning
+
+This system is not merely a workflow.
+
+It is an AI-driven operational orchestration engine capable of:
+
+- Acting as a lightweight CRM backend
+- Routing distributed service networks
+- Enabling non-geographic business expansion
+- Structuring fragmented service ecosystems
+
+The design emphasizes:
+
+- AI-assisted decision support
+- Human accountability
+- Scalable routing logic
+- Operational transparency
+
+
