@@ -190,3 +190,197 @@ Scalable model:
 
 **Mohanarengan Krishnaraja**  
 AI Automation Developer  
+
+# 🔁 Workflow Architecture & Execution Flow
+
+---
+
+# 🚀 Workflow 1 – AI Lead Qualification Engine
+
+## 🎥 Live Demo
+
+![Workflow 1 Demo](assets/workflow1-demo.gif.gif)
+
+---
+
+## 🧩 Step-by-Step Breakdown
+
+### 1️⃣ Master Workflow View
+
+![1. Workflow](assets/1.workflow.png)
+
+- Manual trigger starts execution
+- Reads lead data from Google Sheets
+- Sends structured input to AI Agent
+- Updates sheet with qualification result
+- Sends Telegram notification
+
+---
+
+### 2️⃣ Google Sheets – Get Rows
+
+![2. GSheets Get Rows](assets/2.Gsheets_getrows_config.png)
+
+- Fetches unprocessed leads
+- Extracts required columns
+- Prepares structured data for AI
+
+---
+
+### 3️⃣ AI Agent Configuration
+
+![3. AI Agent Config](assets/3.AI_Agent_config.png)
+
+- Central orchestration node
+- Applies qualification logic
+- Generates structured output
+
+---
+
+### 4️⃣ AI Agent Advanced Settings
+
+![4. AI Agent Config 2](assets/4.AI-Agent-config2.png)
+
+- Maps input fields
+- Controls JSON output format
+- Ensures deterministic response
+
+---
+
+### 5️⃣ Groq Model Configuration
+
+![5. Groq Model](assets/5.Groqmodel-config.png)
+
+- Connected LLM (Groq)
+- Fast inference
+- Optimized for automation workflows
+
+---
+
+### 6️⃣ Google Sheets – Update Row
+
+![6. Sheets Update Row](assets/6.Sheets-Update-row-config.png)
+
+- Writes qualification result
+- Updates lead score
+- Prevents duplicate processing
+
+---
+
+### 7️⃣ Telegram – Send Message
+
+![7. Telegram Send Message](assets/7.Telegram-sendmessage-config.png)
+
+- Sends structured lead summary
+- Includes score and status
+- Instant internal notification
+
+---
+
+---
+
+# 🔁 Workflow 2 – Telegram Trigger Based Execution
+
+## 🎥 Live Demo
+
+![Workflow 2 Demo](assets/workflow2-demo.gif.gif)
+
+---
+
+## 🧩 Step-by-Step Breakdown
+
+### 8️⃣ Workflow 2 Overview
+
+![8. Workflow 2](assets/8.workflow2.png)
+
+- Triggered by Telegram input
+- Routes message to AI processing
+- Updates CRM accordingly
+
+---
+
+### 9️⃣ Telegram Trigger
+
+![9. Telegram Trigger](assets/9.teleg-trig-config.png)
+
+- Listens for incoming messages
+- Extracts chat payload
+- Starts workflow execution
+
+---
+
+### 🔟 Code Node Processing
+
+![10. Code Node](assets/10.code-node-config.png)
+
+- Cleans incoming data
+- Structures AI-ready payload
+- Standardizes input format
+
+---
+
+### 1️⃣1️⃣ IF Node – Validation 1
+
+![11. IF Node](assets/11.ifnode-config.png)
+
+- Checks message validity
+- Routes correct execution path
+
+---
+
+### 1️⃣2️⃣ IF Node – Validation 2
+
+![12. IF Node 2](assets/12.if1nodeconfig.png)
+
+- Secondary condition check
+- Prevents null or invalid inputs
+
+---
+
+### 1️⃣3️⃣ Get Rows (Data Match)
+
+![13. Get Rows](assets/13.getrows-config.png)
+
+- Retrieves matching lead data
+- Injects context into AI flow
+
+---
+
+### 1️⃣4️⃣ IF Node – Record Validation
+
+![14. IF Node 3](assets/14.ifnode-config.png)
+
+- Confirms record existence
+- Routes update or fallback path
+
+---
+
+### 1️⃣5️⃣ Update Row
+
+![15. Update Row](assets/15.update-row-config.png)
+
+- Updates CRM record
+- Logs AI decision
+- Maintains audit trail
+
+---
+
+### 1️⃣6️⃣ Telegram Output Result
+
+![16. Telegram Output](assets/16.teleg-screenshot.png)
+
+- Displays final automation output
+- Confirms successful execution
+- Demonstrates real-time workflow
+
+---
+
+# 🏗️ Technical Architecture Summary
+
+- Event-Driven Automation
+- AI Agent Orchestration Layer
+- Groq LLM Integration
+- Google Sheets as Lightweight CRM
+- Telegram as Notification Channel
+- Structured JSON Output Handling
+
